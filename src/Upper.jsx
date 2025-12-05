@@ -3,9 +3,28 @@ import logo from './assets/note.png'
 import pic from './assets/pic.png'
 const Upper = () => {
 
-    const [heading,setHeading] = useState([])
-    const [desc,setDesc] = useState([])
-    const [date,setDate] = useState([])
+
+
+    const [heading,setHeading] = useState(()=>{
+        const saved = localStorage.getItem('heading')
+        return saved? JSON.parse(saved) : []
+    })
+
+    const [desc,setDesc] = useState(()=>{
+        const saved2 = localStorage.getItem('desc')
+        return saved2? JSON.parse(saved2):[]
+    })
+
+    const [date,setDate] = useState(()=>{
+        const saved3 = localStorage.getItem('date')
+        return saved3? JSON.parse(saved3):[]
+    })
+
+    useEffect(()=>{  {/*saving everything if change made*/}
+        localStorage.setItem('heading',JSON.stringify(heading))
+        localStorage.setItem('desc',JSON.stringify(desc))
+        localStorage.setItem('date',JSON.stringify(date))
+    },[heading,desc])
 
     const [h,seth] = useState("")
     const [d,setd] = useState("")
