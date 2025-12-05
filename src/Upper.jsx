@@ -5,9 +5,11 @@ const Upper = () => {
 
     const [heading,setHeading] = useState([])
     const [desc,setDesc] = useState([])
+    const [date,setDate] = useState([])
 
     const [h,seth] = useState("")
     const [d,setd] = useState("")
+    const [da,setda] = useState(new Date().getDate()+"-" + new Date().getMonth() + "-" + new Date().getFullYear())
 
     const fun = (e)=>{
         seth(e.target.value)
@@ -26,6 +28,7 @@ const Upper = () => {
             console.log("Submitted")
             setHeading([...heading,h]);
             setDesc([...desc,d]);
+            setDate([...date,da]);
             seth("")
             setd("")
         }
@@ -34,6 +37,7 @@ const Upper = () => {
     const handledelete = (e)=>{
         setHeading(heading.filter((_,index)=>index!==e))
         setDesc(desc.filter((_,index)=>index!==e))
+        setDate(date.filter((_,index)=>index!=e))
     }
 
 
@@ -58,9 +62,10 @@ const Upper = () => {
         {heading.length!=0? (
             <div className=' p-2  rounded text-white grid md:grid-cols-2 lg:grid-cols-4 gap-7 justify-items-center h-screen  '>
                 {heading.map((h,index)=>(
-                    <div className='border rounded-2xl p-2 w-70 h-60 hover:scale-110 transition-all duration-200 bg-cover  bg-center 'onDoubleClick={()=>handledelete(index)}>
+                    <div className='border rounded-2xl p-2 w-70 h-60 hover:scale-110 transition-all duration-300 bg-cover  bg-center relative 'onDoubleClick={()=>handledelete(index)}>
                     <h1 className='text-2xl font-bold'>{h}</h1>
                     <h1>{desc[index]}</h1>
+                    <h2 className='text-xs text-gray-400 absolute bottom-1 right-2'>Added on {date[index]}</h2>
                 </div>
                 ))}
             </div>
