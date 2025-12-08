@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import logo from './assets/note.png'
 import pic from './assets/pic.png'
 const Upper = () => {
-
-
-
     const [heading,setHeading] = useState(()=>{
         const saved = localStorage.getItem('heading')
         return saved? JSON.parse(saved) : []
@@ -37,7 +34,6 @@ const Upper = () => {
         setd(e.target.value)
     }
 
-    
     const handlesubmit = (e)=>{
         e.preventDefault()
         if(h==="" && d==""){
@@ -79,7 +75,7 @@ const Upper = () => {
 
         {/* lower div */}
         {heading.length!=0? (
-            <div className=' p-2  rounded text-white grid md:grid-cols-2 lg:grid-cols-4 gap-7 justify-items-center h-screen  '>
+            <div className=' p-2  rounded text-white grid md:grid-cols-2 lg:grid-cols-4 gap-7 justify-items-center min-h-fit  '>
                 {heading.map((h,index)=>(
                     <div className='border rounded-2xl p-2 w-70 h-60 hover:scale-110 transition-all duration-300 bg-cover  bg-center relative 'onDoubleClick={()=>handledelete(index)}>
                     <h1 className='text-2xl font-bold'>{h}</h1>
